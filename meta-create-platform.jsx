@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef, createContext, useContext } from "react";
 import { Search, Bell, Plus, Heart, MessageCircle, Share2, Bookmark, ChevronRight, Sparkles, Rocket, Lightbulb, Handshake, Users, ArrowLeft, Star, MapPin, Clock, Filter, TrendingUp, Zap, Target, Compass, Send, X, Check, ChevronDown, Globe, Award, Eye, UserPlus, Home, Grid3X3, User, Settings, Menu, Play, ExternalLink, Flame, Trophy, Calendar, Coffee, BookOpen, ArrowRight, Quote, Hash, Paperclip, FileText, CheckSquare, Image, MoreHorizontal, Phone, Video, Smile, AtSign, Link, FolderOpen, ClipboardList, Lock, Mail, Briefcase, ChevronLeft, LogIn, LogOut } from "lucide-react";
 import * as recharts from "recharts";
+import logo from './logo.png';
 const { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } = recharts;
 
 // ============================================
@@ -14,7 +15,7 @@ const TRANSLATIONS = {
     nav_home: "Home", nav_explore: "Explore", nav_match: "Match", nav_create: "Create", nav_space_base: "Space Base", nav_community: "Community", nav_programs: "Programs", nav_alerts: "Alerts", nav_chat: "Chat", nav_workspace: "Workspace",
     landing_hero_stat_1: "850+ projects launched by real creators",
     landing_hero_title_1: "Don't Just Dream It.", landing_hero_title_2: "Find Your Team & Build It.",
-    landing_hero_subtitle: "The world's first creation-first social platform. Post a spark, meet your dream team through AI, and turn wild ideas into reality — together.",
+    landing_hero_subtitle: "Post a spark, meet your dream team through AI, and turn wild ideas into reality — together.",
     landing_hero_cta_1: "Explore Ideas", landing_hero_cta_2: "Find Your Match",
     landing_live_stat_1: "42 creators", landing_live_stat_2: "active right now", landing_live_stat_3: "3 new matches", landing_live_stat_4: "made today",
     landing_trusted_by: "Trusted by creators from",
@@ -31,7 +32,7 @@ const TRANSLATIONS = {
     challenge_cta: "Join This Challenge",
     event_badge: "Upcoming Event", event_hack: "72-Hour Hackathon",
     event_name: "Space Base Challenge", event_desc: "Cross-cultural, cross-disciplinary hackathon. 4 tracks. 3 cities. 72 hours. Ship something real.",
-    event_cities: "Beijing · San Francisco · London", event_teams: "Teams of 2-4 students", event_sprint: "3-day in-person sprint",
+    event_cities: "Beijing · New York", event_teams: "Teams of 2-4 students", event_sprint: "3-day in-person sprint",
     event_cta_1: "Explore Challenge", event_cta_2: "View Tracks & Teams",
     stories_title: "Real Creators, Real Stories", stories_sub: "What happens when ideas meet their dream team", our_story: "Our Story",
     trending: "Trending This Week", see_all: "See All", spotlight: "Creator Spotlight",
@@ -134,7 +135,7 @@ const TRANSLATIONS = {
     skills: "技能", interests: "兴趣", values: "价值观", badges: "徽章",
     posts_by: "作品来自", projects: "项目", day_streak: "连胜天数", connect: "关注", message: "私信",
     match_title: "AI 匹配中心", match_sub: "描述你的创意方向，我们帮你找到理想的合作者",
-    match_stat: "3,200+ 次成功匹配，还在增长",
+    match_stat: "200+ 次成功匹配，还在增长",
     match_q1: "你正在创作什么？", match_q2: "你需要什么技能？",
     match_cta: "找到我的梦想团队", match_loading: "正在为你匹配...", match_analyzing: "分析中 2,400+ 位创作者资料...",
     match_results: "为你精选的匹配", why_match: "匹配原因", invite_collab: "邀请合作", profile: "个人资料",
@@ -249,9 +250,9 @@ const WEEKLY_CHALLENGES = [
 
 // Testimonials
 const TESTIMONIALS = [
-  { name: "Yuki Tanaka", role: "CS Student, Tokyo University", text: "I came with a half-baked idea for a learning app. Within 48 hours of the Future World Lab, I had a team, a prototype, and more clarity than months of thinking alone gave me.", avatar: "YT", color: "#A78BFA" },
-  { name: "James Okafor", role: "Designer, Lagos", text: "The AI matching connected me with an engineer who thinks completely differently from me. That tension is exactly what made our project special.", avatar: "JO", color: "#4ECDC4" },
-  { name: "Lin Wei", role: "Tsinghua University", text: "Most platforms want your resume. Meta-Create wanted my dreams. That's the difference — and it's why the people here are so different from anywhere else.", avatar: "LW", color: "#FFB84D" }
+  { name: "KC", role: "Student, Peking University", text: "I came with a half-baked idea for a learning app. Within 48 hours of the Future World Lab, I had a team, a prototype, and more clarity than months of thinking alone gave me.", avatar: "YT", color: "#A78BFA" },
+  { name: "Jk", role: "Designer", text: "The AI matching connected me with an engineer who thinks completely differently from me. That tension is exactly what made our project special.", avatar: "JO", color: "#4ECDC4" },
+  { name: "LW", role: "Student, Tsinghua University", text: "Most platforms want your resume. Meta-Create wanted my dreams. That's the difference — and it's why the people here are so different from anywhere else.", avatar: "LW", color: "#FFB84D" }
 ];
 
 // Creator levels
@@ -324,7 +325,7 @@ function Button({ children, variant = "primary", size = "md", onClick, style = {
     secondary: { background: hovered ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.06)", color: "#E2E8F0", border: "1px solid rgba(255,255,255,0.15)" },
     ghost: { background: hovered ? "rgba(255,255,255,0.06)" : "transparent", color: "#94A3B8", border: "none" }
   };
-  const sizeStyles = { sm: { padding: "6px 14px", fontSize: 13 }, md: { padding: "10px 20px", fontSize: 14 }, lg: { padding: "14px 28px", fontSize: 16 } };
+  const sizeStyles = { sm: { padding: "6px 14px", fontSize: 13 }, md: { padding: "10px 16px", fontSize: 14 }, lg: { padding: "14px 28px", fontSize: 16 } };
   return (
     <button onClick={onClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
       style={{ ...baseStyles[variant], ...sizeStyles[size], borderRadius: 12, fontWeight: 600, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, cursor: "pointer", transition: "all 0.3s ease", fontFamily: "inherit", width: fullWidth ? "100%" : "auto", ...style }}>
@@ -341,7 +342,7 @@ function PostCard({ post, onClick }) {
   const [saved, setSaved] = useState(false);
   return (
     <GlassCard onClick={onClick} style={{ overflow: "hidden", breakInside: "avoid", marginBottom: 16 }}>
-      <div style={{ background: post.gradient, padding: "32px 20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 56, position: "relative" }}>
+      <div style={{ background: post.gradient, padding: "32px 16px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 56, position: "relative" }}>
         <div style={{ position: "absolute", top: 12, left: 12 }}><Badge color={typeColor}><TypeIcon size={12} /> {TYPE_CONFIG[post.type]?.label}</Badge></div>
         {post.stage && post.stage !== "Published" && <div style={{ position: "absolute", top: 12, right: 12 }}><Badge color="#fff" variant="outline">{post.stage}</Badge></div>}
         <span>{post.image}</span>
@@ -461,10 +462,10 @@ function XPBar({ xp, compact = false }) {
 function LandingPage({ onNavigate }) {
   const lang = useLang();
   const stats = [
-    { label: t("stat_creators", lang), value: "2,400+", Icon: Users },
-    { label: t("stat_projects", lang), value: "850+", Icon: Rocket },
-    { label: t("stat_matches", lang), value: "3,200+", Icon: Sparkles },
-    { label: t("stat_countries", lang), value: "45+", Icon: Globe }
+    { label: t("stat_creators", lang), value: "1000+", Icon: Users },
+    { label: t("stat_projects", lang), value: "50+", Icon: Rocket },
+    { label: t("stat_matches", lang), value: "200+", Icon: Sparkles },
+    { label: t("stat_countries", lang), value: "2+", Icon: Globe }
   ];
 
   const partners = ["Tsinghua University", "Peking University", "MIT Media Lab", "Stanford d.school", "Y Combinator", "Columbia University"];
@@ -472,9 +473,9 @@ function LandingPage({ onNavigate }) {
   return (
     <div style={{ minHeight: "100vh" }}>
       {/* Hero */}
-      <div style={{ padding: "80px 20px 50px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+      <div style={{ padding: "80px 16px 50px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "radial-gradient(ellipse at 50% 0%, rgba(255,107,107,0.15) 0%, transparent 60%), radial-gradient(ellipse at 80% 60%, rgba(78,205,196,0.08) 0%, transparent 40%)", pointerEvents: "none" }} />
-        <div style={{ position: "relative", maxWidth: 700, margin: "0 auto" }}>
+        <div style={{ position: "relative", maxWidth: 760, margin: "0 auto" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(255,107,107,0.1)", border: "1px solid rgba(255,107,107,0.2)", borderRadius: 20, padding: "6px 16px", marginBottom: 24, color: "#FF6B6B", fontSize: 13, fontWeight: 500 }}>
             <Sparkles size={14} /> {t("landing_hero_stat_1", lang)}
           </div>
@@ -491,7 +492,7 @@ function LandingPage({ onNavigate }) {
           </div>
 
           {/* Live Activity Pulse */}
-          <GlassCard style={{ display: "inline-flex", alignItems: "center", gap: 12, padding: "10px 20px" }} hover={false}>
+          <GlassCard style={{ display: "inline-flex", alignItems: "center", gap: 12, padding: "10px 16px" }} hover={false}>
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#34D399", boxShadow: "0 0 8px #34D399", animation: "pulse 2s infinite" }} />
             <span style={{ color: "#94A3B8", fontSize: 13 }}>
               <strong style={{ color: "#F1F5F9" }}>{t("landing_live_stat_1", lang)}</strong> {t("landing_live_stat_2", lang)} — <strong style={{ color: "#FFB84D" }}>{t("landing_live_stat_3", lang)}</strong> {t("landing_live_stat_4", lang)}
@@ -502,7 +503,7 @@ function LandingPage({ onNavigate }) {
       </div>
 
       {/* Partner Logos */}
-      <div style={{ padding: "16px 20px 40px", textAlign: "center" }}>
+      <div style={{ padding: "16px 16px 40px", textAlign: "center" }}>
         <p style={{ color: "#475569", fontSize: 12, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>{t("landing_trusted_by", lang)}</p>
         <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap", opacity: 0.6 }}>
           {partners.map(p => (
@@ -512,7 +513,7 @@ function LandingPage({ onNavigate }) {
       </div>
 
       {/* Stats */}
-      <div style={{ display: "flex", justifyContent: "center", gap: 32, padding: "0 20px 50px", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", justifyContent: "center", gap: 32, padding: "0 16px 50px", flexWrap: "wrap" }}>
         {stats.map(s => (
           <div key={s.label} style={{ textAlign: "center" }}>
             <s.Icon size={20} style={{ color: "#FF6B6B", marginBottom: 8 }} />
@@ -523,7 +524,7 @@ function LandingPage({ onNavigate }) {
       </div>
 
       {/* How It Works */}
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 20px 50px" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 16px 50px" }}>
         <h2 style={{ textAlign: "center", color: "#F1F5F9", fontSize: 28, fontWeight: 700, marginBottom: 8 }}>{t("methodology_title", lang)}</h2>
         <p style={{ textAlign: "center", color: "#94A3B8", marginBottom: 40, fontSize: 15 }}>{t("methodology_sub", lang)}</p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 16 }}>
@@ -546,7 +547,7 @@ function LandingPage({ onNavigate }) {
       </div>
 
       {/* Weekly Challenge Banner */}
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 20px 50px" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 16px 50px" }}>
         <GlassCard style={{ padding: 24, background: "linear-gradient(135deg, rgba(255,107,107,0.08) 0%, rgba(167,139,250,0.08) 100%)", borderColor: "rgba(255,107,107,0.15)" }} hover={false}>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
             <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(255,107,107,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -570,7 +571,7 @@ function LandingPage({ onNavigate }) {
       </div>
 
       {/* Space Base Challenge Banner */}
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 20px 50px" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 16px 50px" }}>
         <GlassCard style={{ padding: 0, overflow: "hidden", background: "linear-gradient(135deg, rgba(45,58,140,0.3) 0%, rgba(15,23,41,0.6) 50%, rgba(167,139,250,0.15) 100%)", borderColor: "rgba(167,139,250,0.2)" }} hover={false}>
           <div style={{ position: "relative", padding: "32px 28px" }}>
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, overflow: "hidden", pointerEvents: "none" }}>
@@ -592,7 +593,7 @@ function LandingPage({ onNavigate }) {
               </div>
               <div style={{ display: "flex", gap: 20, marginBottom: 20, flexWrap: "wrap" }}>
                 {[
-                  { Icon: MapPin, text: "Beijing · San Francisco · London" },
+                  { Icon: MapPin, text: "Beijing · New York" },
                   { Icon: Users, text: "Teams of 2-4 students" },
                   { Icon: Calendar, text: "3-day in-person sprint" }
                 ].map((d, i) => (
@@ -612,7 +613,7 @@ function LandingPage({ onNavigate }) {
       </div>
 
       {/* Testimonials */}
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 20px 50px" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 16px 50px" }}>
         <h2 style={{ textAlign: "center", color: "#F1F5F9", fontSize: 24, fontWeight: 700, marginBottom: 8 }}>{t("stories_title", lang)}</h2>
         <p style={{ textAlign: "center", color: "#94A3B8", marginBottom: 32, fontSize: 14 }}>{t("stories_sub", lang)}</p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: 16 }}>
@@ -633,7 +634,7 @@ function LandingPage({ onNavigate }) {
       </div>
 
       {/* Founder Story */}
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 20px 50px" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 16px 50px" }}>
         <GlassCard style={{ padding: 0, overflow: "hidden" }} hover={false}>
           <div style={{ background: "linear-gradient(135deg, rgba(255,107,107,0.1), rgba(255,184,77,0.05))", padding: "32px 28px" }}>
             <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
@@ -664,7 +665,7 @@ function LandingPage({ onNavigate }) {
       </div>
 
       {/* Trending Ideas */}
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 20px 50px" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 16px 50px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
           <h2 style={{ color: "#F1F5F9", fontSize: 24, fontWeight: 700 }}>{t("trending", lang)}</h2>
           <Button variant="ghost" size="sm" icon={ChevronRight} onClick={() => onNavigate("feed")}>{t("see_all", lang)}</Button>
@@ -675,7 +676,7 @@ function LandingPage({ onNavigate }) {
       </div>
 
       {/* Active Creators Spotlight */}
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 20px 50px" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 16px 50px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
           <h2 style={{ color: "#F1F5F9", fontSize: 24, fontWeight: 700 }}>Creator Spotlight</h2>
           <Button variant="ghost" size="sm" icon={ChevronRight} onClick={() => onNavigate("community")}>See All</Button>
@@ -703,8 +704,8 @@ function LandingPage({ onNavigate }) {
       </div>
 
       {/* CTA */}
-      <div style={{ textAlign: "center", padding: "20px 20px 80px" }}>
-        <GlassCard style={{ maxWidth: 600, margin: "0 auto", padding: "40px 32px", background: "linear-gradient(135deg, rgba(255,107,107,0.08), rgba(255,184,77,0.08))" }} hover={false}>
+      <div style={{ textAlign: "center", padding: "20px 16px 80px" }}>
+        <GlassCard style={{ maxWidth: 640, margin: "0 auto", padding: "40px 32px", background: "linear-gradient(135deg, rgba(255,107,107,0.08), rgba(255,184,77,0.08))" }} hover={false}>
           <h2 style={{ color: "#F1F5F9", fontSize: 24, fontWeight: 700, marginBottom: 8 }}>Your idea deserves a team.</h2>
           <p style={{ color: "#94A3B8", fontSize: 15, marginBottom: 24 }}>Join 2,400+ creators who stopped waiting for permission and started building. It takes 30 seconds.</p>
           <Button size="lg" onClick={() => onNavigate("create")}>Share Your First Idea</Button>
@@ -720,7 +721,7 @@ function CommunityPage({ onNavigate }) {
   const leaderboard = [...CREATORS].sort((a, b) => b.xp - a.xp);
 
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto", padding: "24px 20px" }}>
+    <div style={{ maxWidth: 860, margin: "0 auto", padding: "24px 16px" }}>
       <div style={{ textAlign: "center", marginBottom: 24 }}>
         <h1 style={{ color: "#F8FAFC", fontSize: 28, fontWeight: 700, marginBottom: 6 }}>Creator Community</h1>
         <p style={{ color: "#94A3B8", fontSize: 15 }}>Challenges, streaks, and your creator journey</p>
@@ -963,7 +964,7 @@ function FeedPage({ onNavigate }) {
   });
 
   return (
-    <div style={{ maxWidth: viewMode === "immersive" ? 480 : 900, margin: "0 auto", padding: viewMode === "immersive" ? "12px 12px" : "24px 20px", transition: "max-width 0.3s" }}>
+    <div style={{ maxWidth: viewMode === "immersive" ? 480 : 960, margin: "0 auto", padding: viewMode === "immersive" ? "12px 12px" : "24px 16px", transition: "max-width 0.3s" }}>
       {/* Top bar */}
       <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 12 }}>
         <div style={{ position: "relative", flex: 1 }}>
@@ -989,7 +990,7 @@ function FeedPage({ onNavigate }) {
       </div>
 
       {filtered.length === 0 ? (
-        <div style={{ textAlign: "center", padding: "60px 20px", color: "#64748B" }}>
+        <div style={{ textAlign: "center", padding: "60px 16px", color: "#64748B" }}>
           <Search size={40} style={{ marginBottom: 12, opacity: 0.4 }} />
           <p style={{ fontSize: 16 }}>No results found. Try different filters!</p>
         </div>
@@ -1023,7 +1024,7 @@ function DetailPage({ post, onNavigate, onBack }) {
   ];
 
   return (
-    <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px 20px" }}>
+    <div style={{ maxWidth: 760, margin: "0 auto", padding: "24px 16px" }}>
       <button onClick={onBack} style={{ display: "flex", alignItems: "center", gap: 6, color: "#94A3B8", background: "none", border: "none", cursor: "pointer", fontSize: 14, fontFamily: "inherit", marginBottom: 20, padding: 0 }}><ArrowLeft size={16} /> Back</button>
       <div style={{ background: post.gradient, borderRadius: 20, padding: "48px 24px", textAlign: "center", fontSize: 72, marginBottom: 24, position: "relative" }}>
         <div style={{ position: "absolute", top: 16, left: 16 }}><Badge color={typeColor}><TypeIcon size={12} /> {TYPE_CONFIG[post.type]?.label}</Badge></div>
@@ -1096,7 +1097,7 @@ function ProfilePage({ creator, onBack, onNavigate }) {
   const levelInfo = getLevelInfo(creator.xp);
 
   return (
-    <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px 20px" }}>
+    <div style={{ maxWidth: 760, margin: "0 auto", padding: "24px 16px" }}>
       <button onClick={onBack} style={{ display: "flex", alignItems: "center", gap: 6, color: "#94A3B8", background: "none", border: "none", cursor: "pointer", fontSize: 14, fontFamily: "inherit", marginBottom: 20, padding: 0 }}><ArrowLeft size={16} /> Back</button>
       <GlassCard style={{ padding: 24, marginBottom: 20, textAlign: "center" }} hover={false}>
         <Avatar name={creator.name} avatar={creator.avatar} color={creator.color} size={72} showStreak streak={creator.streak} />
@@ -1177,7 +1178,7 @@ function MatchHubPage({ onNavigate }) {
   const handleMatch = () => { setLoading(true); setTimeout(() => { setLoading(false); setShowResults(true); }, 1800); };
 
   return (
-    <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px 20px" }}>
+    <div style={{ maxWidth: 760, margin: "0 auto", padding: "24px 16px" }}>
       <div style={{ textAlign: "center", marginBottom: 32 }}>
         <div style={{ width: 56, height: 56, borderRadius: 16, background: "linear-gradient(135deg, rgba(255,107,107,0.15), rgba(255,184,77,0.15))", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}><Sparkles size={28} style={{ color: "#FF6B6B" }} /></div>
         <h1 style={{ color: "#F8FAFC", fontSize: 28, fontWeight: 700, marginBottom: 8 }}>AI Match Hub</h1>
@@ -1226,7 +1227,7 @@ function CreatePostPage({ onNavigate }) {
 
   if (published) {
     return (
-      <div style={{ maxWidth: 500, margin: "0 auto", padding: "80px 20px", textAlign: "center" }}>
+      <div style={{ maxWidth: 540, margin: "0 auto", padding: "80px 16px", textAlign: "center" }}>
         <div style={{ width: 72, height: 72, borderRadius: "50%", background: "linear-gradient(135deg, #34D399, #4ECDC4)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px" }}><Check size={36} style={{ color: "#fff" }} /></div>
         <h1 style={{ color: "#F8FAFC", fontSize: 28, fontWeight: 700, marginBottom: 8 }}>Published!</h1>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(255,184,77,0.1)", border: "1px solid rgba(255,184,77,0.2)", borderRadius: 8, padding: "6px 12px", marginBottom: 16 }}><Zap size={14} style={{ color: "#FFB84D" }} /><span style={{ color: "#FFB84D", fontSize: 13, fontWeight: 600 }}>+50 XP earned!</span></div>
@@ -1240,7 +1241,7 @@ function CreatePostPage({ onNavigate }) {
   }
 
   return (
-    <div style={{ maxWidth: 600, margin: "0 auto", padding: "24px 20px" }}>
+    <div style={{ maxWidth: 640, margin: "0 auto", padding: "24px 16px" }}>
       <h1 style={{ color: "#F8FAFC", fontSize: 24, fontWeight: 700, marginBottom: 4 }}>Create a Post</h1>
       <p style={{ color: "#94A3B8", fontSize: 14, marginBottom: 24 }}>Share your idea with the world — earn XP and find collaborators</p>
       <div style={{ display: "flex", gap: 8, marginBottom: 32 }}>
@@ -1295,7 +1296,7 @@ function CreatePostPage({ onNavigate }) {
         <div>
           <h2 style={{ color: "#E2E8F0", fontSize: 16, fontWeight: 600, marginBottom: 16 }}>Preview Your Post</h2>
           <GlassCard style={{ overflow: "hidden", marginBottom: 20 }} hover={false}>
-            <div style={{ background: `linear-gradient(135deg, ${TYPE_CONFIG[postType]?.color || "#FF6B6B"}, #2D3A8C)`, padding: "32px 20px", textAlign: "center" }}><Badge color="#fff">{TYPE_CONFIG[postType]?.label}</Badge></div>
+            <div style={{ background: `linear-gradient(135deg, ${TYPE_CONFIG[postType]?.color || "#FF6B6B"}, #2D3A8C)`, padding: "32px 16px", textAlign: "center" }}><Badge color="#fff">{TYPE_CONFIG[postType]?.label}</Badge></div>
             <div style={{ padding: 16 }}>
               <h3 style={{ color: "#F1F5F9", fontSize: 18, fontWeight: 600, marginBottom: 8 }}>{title || "Untitled"}</h3>
               <p style={{ color: "#94A3B8", fontSize: 14, lineHeight: 1.6, marginBottom: 12 }}>{description || "No description"}</p>
@@ -1333,15 +1334,14 @@ function CollabPage({ onNavigate }) {
   ];
 
   const sites = [
-    { city: "Beijing", venue: "Peking University Innovation Center", emoji: "🇨🇳", teams: 12 },
-    { city: "San Francisco", venue: "Mission District Maker Space", emoji: "🇺🇸", teams: 8 },
-    { city: "London", venue: "Imperial College Hack Space", emoji: "🇬🇧", teams: 8 }
+    { city: "Beijing", venue: "Peking University", emoji: "🇨🇳", teams: 8 },
+    { city: "New York", venue: "Columbia University", emoji: "🇺🇸", teams: 5 }
   ];
 
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto", padding: "24px 20px" }}>
+    <div style={{ maxWidth: 860, margin: "0 auto", padding: "24px 16px" }}>
       {/* Hero */}
-      <div style={{ textAlign: "center", padding: "40px 20px 32px", position: "relative", overflow: "hidden", borderRadius: 24, marginBottom: 24, background: "linear-gradient(135deg, #0a0e27 0%, #1a1040 40%, #0d1f3c 100%)" }}>
+      <div style={{ textAlign: "center", padding: "40px 16px 32px", position: "relative", overflow: "hidden", borderRadius: 24, marginBottom: 24, background: "linear-gradient(135deg, #0a0e27 0%, #1a1040 40%, #0d1f3c 100%)" }}>
         {/* Star field effect */}
         <div style={{ position: "absolute", inset: 0, opacity: 0.4, background: "radial-gradient(1px 1px at 10% 20%, #fff, transparent), radial-gradient(1px 1px at 30% 60%, #fff, transparent), radial-gradient(1.5px 1.5px at 50% 10%, #FFB84D, transparent), radial-gradient(1px 1px at 70% 40%, #fff, transparent), radial-gradient(1px 1px at 90% 80%, #fff, transparent), radial-gradient(1.5px 1.5px at 15% 85%, #4ECDC4, transparent), radial-gradient(1px 1px at 60% 70%, #fff, transparent), radial-gradient(1px 1px at 80% 15%, #fff, transparent), radial-gradient(2px 2px at 40% 45%, #FF6B6B, transparent), radial-gradient(1px 1px at 25% 35%, #fff, transparent), radial-gradient(1px 1px at 55% 90%, #fff, transparent), radial-gradient(1.5px 1.5px at 85% 55%, #A78BFA, transparent)" }} />
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,107,107,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
@@ -1576,7 +1576,7 @@ function CollabPage({ onNavigate }) {
 // --- Programs Page ---
 function ProgramsPage() {
   return (
-    <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px 20px" }}>
+    <div style={{ maxWidth: 760, margin: "0 auto", padding: "24px 16px" }}>
       <div style={{ textAlign: "center", marginBottom: 32 }}>
         <h1 style={{ color: "#F8FAFC", fontSize: 28, fontWeight: 700, marginBottom: 8 }}>Programs & Events</h1>
         <p style={{ color: "#94A3B8", fontSize: 15 }}>Immersive experiences that accelerate your creative journey</p>
@@ -1586,7 +1586,7 @@ function ProgramsPage() {
           <GlassCard key={prog.id} style={{ overflow: "hidden" }}>
             <div style={{ display: "flex" }}>
               <div style={{ background: prog.gradient, padding: "24px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 44, minWidth: 100 }}>{prog.icon}</div>
-              <div style={{ padding: "16px 20px", flex: 1 }}>
+              <div style={{ padding: "16px 16px", flex: 1 }}>
                 <h3 style={{ color: "#F1F5F9", fontSize: 17, fontWeight: 600, marginBottom: 2 }}>{prog.title}</h3>
                 <p style={{ color: "#FFB84D", fontSize: 12, fontWeight: 500, marginBottom: 6 }}>{prog.subtitle}</p>
                 <p style={{ color: "#94A3B8", fontSize: 13, lineHeight: 1.5, marginBottom: 10 }}>{prog.description}</p>
@@ -1639,9 +1639,9 @@ function ChatPage({ onNavigate }) {
   if (activeChat) {
     const chatPartner = activeChat.creator || { name: activeChat.name, avatar: activeChat.name.split(" ").map(w => w[0]).join(""), color: activeChat.color };
     return (
-      <div style={{ maxWidth: 700, margin: "0 auto", display: "flex", flexDirection: "column", height: "calc(100vh - 96px)" }}>
+      <div style={{ maxWidth: 760, margin: "0 auto", display: "flex", flexDirection: "column", height: "calc(100vh - 96px)" }}>
         {/* Chat header */}
-        <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "16px 20px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "16px 16px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
           <button onClick={() => setActiveChat(null)} style={{ background: "none", border: "none", color: "#94A3B8", cursor: "pointer", padding: 0 }}><ArrowLeft size={18} /></button>
           <Avatar name={chatPartner.name} avatar={chatPartner.avatar} color={chatPartner.color} size={36} />
           <div style={{ flex: 1 }}>
@@ -1657,7 +1657,7 @@ function ChatPage({ onNavigate }) {
           </div>
         </div>
         {/* Messages */}
-        <div style={{ flex: 1, overflowY: "auto", padding: "16px 20px", display: "flex", flexDirection: "column", gap: 12 }}>
+        <div style={{ flex: 1, overflowY: "auto", padding: "16px 16px", display: "flex", flexDirection: "column", gap: 12 }}>
           {messages.map(msg => (
             <div key={msg.id} style={{ display: "flex", justifyContent: msg.isMe ? "flex-end" : "flex-start", gap: 8 }}>
               {!msg.isMe && <Avatar name={msg.sender.name} avatar={msg.sender.avatar} color={msg.sender.color} size={28} />}
@@ -1669,7 +1669,7 @@ function ChatPage({ onNavigate }) {
           ))}
         </div>
         {/* Input */}
-        <div style={{ padding: "12px 20px", borderTop: "1px solid rgba(255,255,255,0.06)", display: "flex", gap: 8, alignItems: "center" }}>
+        <div style={{ padding: "12px 16px", borderTop: "1px solid rgba(255,255,255,0.06)", display: "flex", gap: 8, alignItems: "center" }}>
           <button style={{ background: "none", border: "none", color: "#64748B", cursor: "pointer", padding: 4 }}><Paperclip size={18} /></button>
           <button style={{ background: "none", border: "none", color: "#64748B", cursor: "pointer", padding: 4 }}><Image size={18} /></button>
           <input value={messageInput} onChange={e => setMessageInput(e.target.value)} onKeyDown={e => e.key === "Enter" && handleSend()} placeholder={t("chat_ph", lang)} style={{ flex: 1, padding: "10px 14px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, color: "#F1F5F9", fontSize: 14, fontFamily: "inherit", outline: "none" }} />
@@ -1682,7 +1682,7 @@ function ChatPage({ onNavigate }) {
   }
 
   return (
-    <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px 20px" }}>
+    <div style={{ maxWidth: 760, margin: "0 auto", padding: "24px 16px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
         <h1 style={{ color: "#F8FAFC", fontSize: 24, fontWeight: 700 }}>{t("chat_title", lang)}</h1>
         <Button variant="secondary" size="sm" icon={UserPlus} onClick={() => onNavigate("match")}>{t("chat_find", lang)}</Button>
@@ -1786,7 +1786,7 @@ function WorkspacePage({ onNavigate }) {
   const progressPct = Math.round((completedCount / tasks.length) * 100);
 
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto", padding: "24px 20px" }}>
+    <div style={{ maxWidth: 860, margin: "0 auto", padding: "24px 16px" }}>
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
         <div>
@@ -1943,7 +1943,7 @@ function NotificationsPage({ onNavigate }) {
   ];
 
   return (
-    <div style={{ maxWidth: 600, margin: "0 auto", padding: "24px 20px" }}>
+    <div style={{ maxWidth: 640, margin: "0 auto", padding: "24px 16px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
         <h1 style={{ color: "#F8FAFC", fontSize: 24, fontWeight: 700 }}>Notifications</h1>
         <Button variant="ghost" size="sm">Mark all read</Button>
@@ -2197,7 +2197,7 @@ function AuthPage({ onAuth }) {
       </div>
 
       {/* Right panel — form */}
-      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 20px", position: "relative" }}>
+      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 16px", position: "relative" }}>
         <div style={{ maxWidth: 400, width: "100%", background: "rgba(255,255,255,0.03)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 24, padding: "36px 32px" }}>
           {/* Tab toggle */}
           <div style={{ display: "flex", gap: 4, marginBottom: 28, background: "rgba(255,255,255,0.03)", borderRadius: 12, padding: 4 }}>
@@ -2329,11 +2329,12 @@ export default function MetaCreateApp() {
 
   return (
     <LangContext.Provider value={lang}>
-    <div style={{ minHeight: "100vh", background: "#0F1729", fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", color: "#E2E8F0" }}>
-      <nav style={{ position: "sticky", top: 0, zIndex: 100, background: "rgba(15,23,41,0.85)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "0 20px" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 56 }}>
-          <div onClick={() => navigate("landing")} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
-            <div style={{ width: 32, height: 32, borderRadius: 10, background: "linear-gradient(135deg, #FF6B6B, #FFB84D)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 14, color: "#fff" }}>M</div>
+    <div style={{ minHeight: "100vh", background: "#0F1729", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", color: "#E2E8F0" }}>
+      <nav style={{ position: "sticky", top: 0, zIndex: 100, background: "rgba(15,23,41,0.95)", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "0 10px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 56, minHeight: 56, flexWrap: "nowrap" }}>
+          <div onClick={() => navigate("landing")} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", flexShrink: 0 }}>
+            {/* <img src="/logo.png" alt="青年元创计划 Origin Launch" style={{ height: 40, maxWidth: 160, width: "auto", objectFit: "contain", display: "block" }} /> */}
+            <img src={logo} alt="Meta-Create" style={{ height: 40, maxWidth: 160, width: "auto", objectFit: "contain", display: "block" }} 
             <span style={{ fontWeight: 700, fontSize: 16, color: "#F8FAFC" }}>Meta-Create</span>
           </div>
           <div style={{ display: "flex", gap: 2, alignItems: "center" }}>
@@ -2350,11 +2351,12 @@ export default function MetaCreateApp() {
             })}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            {/* Language Toggle */}
+            {/* Language Toggle — 已隐藏
             <button onClick={() => setLang(lang === "en" ? "zh" : "en")} style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, padding: "4px 10px", cursor: "pointer", color: "#94A3B8", fontSize: 11, fontWeight: 600, fontFamily: "inherit", transition: "all 0.2s" }} title={lang === "en" ? "切换中文" : "Switch to English"}>
               <Globe size={12} />
               <span>{lang === "en" ? "中文" : "EN"}</span>
             </button>
+            */}
             {isLoggedIn ? (
               <>
                 <div style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(255,107,107,0.08)", borderRadius: 8, padding: "4px 8px" }}>
@@ -2389,12 +2391,11 @@ export default function MetaCreateApp() {
         {page === "notifications" && <NotificationsPage onNavigate={navigate} />}
         {page === "auth" && <AuthPage onAuth={handleAuth} />}
       </main>
-      <footer style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "24px 20px", textAlign: "center" }}>
+      <footer style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "24px 16px", textAlign: "center" }}>
         <p style={{ color: "#475569", fontSize: 12 }}>Meta-Create — From Meta-Point, To Infinite Possibilities</p>
         <p style={{ color: "#334155", fontSize: 11, marginTop: 4 }}>Building the future, one creator at a time.</p>
       </footer>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; }
         ::selection { background: rgba(255,107,107,0.3); }
         ::-webkit-scrollbar { width: 6px; }
