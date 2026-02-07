@@ -15,7 +15,7 @@ const TRANSLATIONS = {
     nav_home: "Home", nav_explore: "Explore", nav_match: "Match", nav_create: "Create", nav_space_base: "Space Base", nav_community: "Community", nav_programs: "Programs", nav_alerts: "Alerts", nav_chat: "Chat", nav_workspace: "Workspace",
     landing_hero_stat_1: "850+ projects launched by real creators",
     landing_hero_title_1: "Don't Just Dream It.", landing_hero_title_2: "Find Your Team & Build It.",
-    landing_hero_subtitle: "The world's first creation-first social platform. Post a spark, meet your dream team through AI, and turn wild ideas into reality — together.",
+    landing_hero_subtitle: "Post a spark, meet your dream team through AI, and turn wild ideas into reality — together.",
     landing_hero_cta_1: "Explore Ideas", landing_hero_cta_2: "Find Your Match",
     landing_live_stat_1: "42 creators", landing_live_stat_2: "active right now", landing_live_stat_3: "3 new matches", landing_live_stat_4: "made today",
     landing_trusted_by: "Trusted by creators from",
@@ -32,7 +32,7 @@ const TRANSLATIONS = {
     challenge_cta: "Join This Challenge",
     event_badge: "Upcoming Event", event_hack: "72-Hour Hackathon",
     event_name: "Space Base Challenge", event_desc: "Cross-cultural, cross-disciplinary hackathon. 4 tracks. 3 cities. 72 hours. Ship something real.",
-    event_cities: "Beijing · San Francisco · London", event_teams: "Teams of 2-4 students", event_sprint: "3-day in-person sprint",
+    event_cities: "Beijing · New York", event_teams: "Teams of 2-4 students", event_sprint: "3-day in-person sprint",
     event_cta_1: "Explore Challenge", event_cta_2: "View Tracks & Teams",
     stories_title: "Real Creators, Real Stories", stories_sub: "What happens when ideas meet their dream team", our_story: "Our Story",
     trending: "Trending This Week", see_all: "See All", spotlight: "Creator Spotlight",
@@ -135,7 +135,7 @@ const TRANSLATIONS = {
     skills: "技能", interests: "兴趣", values: "价值观", badges: "徽章",
     posts_by: "作品来自", projects: "项目", day_streak: "连胜天数", connect: "关注", message: "私信",
     match_title: "AI 匹配中心", match_sub: "描述你的创意方向，我们帮你找到理想的合作者",
-    match_stat: "3,200+ 次成功匹配，还在增长",
+    match_stat: "200+ 次成功匹配，还在增长",
     match_q1: "你正在创作什么？", match_q2: "你需要什么技能？",
     match_cta: "找到我的梦想团队", match_loading: "正在为你匹配...", match_analyzing: "分析中 2,400+ 位创作者资料...",
     match_results: "为你精选的匹配", why_match: "匹配原因", invite_collab: "邀请合作", profile: "个人资料",
@@ -250,9 +250,9 @@ const WEEKLY_CHALLENGES = [
 
 // Testimonials
 const TESTIMONIALS = [
-  { name: "Yuki Tanaka", role: "CS Student, Tokyo University", text: "I came with a half-baked idea for a learning app. Within 48 hours of the Future World Lab, I had a team, a prototype, and more clarity than months of thinking alone gave me.", avatar: "YT", color: "#A78BFA" },
-  { name: "James Okafor", role: "Designer, Lagos", text: "The AI matching connected me with an engineer who thinks completely differently from me. That tension is exactly what made our project special.", avatar: "JO", color: "#4ECDC4" },
-  { name: "Lin Wei", role: "Tsinghua University", text: "Most platforms want your resume. Meta-Create wanted my dreams. That's the difference — and it's why the people here are so different from anywhere else.", avatar: "LW", color: "#FFB84D" }
+  { name: "KC", role: "Student, Peking University", text: "I came with a half-baked idea for a learning app. Within 48 hours of the Future World Lab, I had a team, a prototype, and more clarity than months of thinking alone gave me.", avatar: "YT", color: "#A78BFA" },
+  { name: "Jk", role: "Designer", text: "The AI matching connected me with an engineer who thinks completely differently from me. That tension is exactly what made our project special.", avatar: "JO", color: "#4ECDC4" },
+  { name: "LW", role: "Student, Tsinghua University", text: "Most platforms want your resume. Meta-Create wanted my dreams. That's the difference — and it's why the people here are so different from anywhere else.", avatar: "LW", color: "#FFB84D" }
 ];
 
 // Creator levels
@@ -462,10 +462,10 @@ function XPBar({ xp, compact = false }) {
 function LandingPage({ onNavigate }) {
   const lang = useLang();
   const stats = [
-    { label: t("stat_creators", lang), value: "2,400+", Icon: Users },
-    { label: t("stat_projects", lang), value: "850+", Icon: Rocket },
-    { label: t("stat_matches", lang), value: "3,200+", Icon: Sparkles },
-    { label: t("stat_countries", lang), value: "45+", Icon: Globe }
+    { label: t("stat_creators", lang), value: "1000+", Icon: Users },
+    { label: t("stat_projects", lang), value: "50+", Icon: Rocket },
+    { label: t("stat_matches", lang), value: "200+", Icon: Sparkles },
+    { label: t("stat_countries", lang), value: "2+", Icon: Globe }
   ];
 
   const partners = ["Tsinghua University", "Peking University", "MIT Media Lab", "Stanford d.school", "Y Combinator", "Columbia University"];
@@ -593,7 +593,7 @@ function LandingPage({ onNavigate }) {
               </div>
               <div style={{ display: "flex", gap: 20, marginBottom: 20, flexWrap: "wrap" }}>
                 {[
-                  { Icon: MapPin, text: "Beijing · San Francisco · London" },
+                  { Icon: MapPin, text: "Beijing · New York" },
                   { Icon: Users, text: "Teams of 2-4 students" },
                   { Icon: Calendar, text: "3-day in-person sprint" }
                 ].map((d, i) => (
@@ -1334,9 +1334,8 @@ function CollabPage({ onNavigate }) {
   ];
 
   const sites = [
-    { city: "Beijing", venue: "Peking University Innovation Center", emoji: "🇨🇳", teams: 12 },
-    { city: "San Francisco", venue: "Mission District Maker Space", emoji: "🇺🇸", teams: 8 },
-    { city: "London", venue: "Imperial College Hack Space", emoji: "🇬🇧", teams: 8 }
+    { city: "Beijing", venue: "Peking University", emoji: "🇨🇳", teams: 8 },
+    { city: "New York", venue: "Columbia University", emoji: "🇺🇸", teams: 5 }
   ];
 
   return (
