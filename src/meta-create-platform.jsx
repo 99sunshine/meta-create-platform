@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef, createContext, useContext } from "react";
 import { Search, Bell, Plus, Heart, MessageCircle, Share2, Bookmark, ChevronRight, Sparkles, Rocket, Lightbulb, Handshake, Users, ArrowLeft, Star, MapPin, Clock, Filter, TrendingUp, Zap, Target, Compass, Send, X, Check, ChevronDown, Globe, Award, Eye, UserPlus, Home, Grid3X3, User, Settings, Menu, Play, ExternalLink, Flame, Trophy, Calendar, Coffee, BookOpen, ArrowRight, Quote, Hash, Paperclip, FileText, CheckSquare, Image, MoreHorizontal, Phone, Video, Smile, AtSign, Link, FolderOpen, ClipboardList, Lock, Mail, Briefcase, ChevronLeft, LogIn, LogOut } from "lucide-react";
 import * as recharts from "recharts";
+import logo from './logo.png';
 const { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } = recharts;
 
 // ============================================
@@ -2333,7 +2334,8 @@ export default function MetaCreateApp() {
       <nav style={{ position: "sticky", top: 0, zIndex: 100, background: "rgba(15,23,41,0.95)", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "0 10px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 56, minHeight: 56, flexWrap: "nowrap" }}>
           <div onClick={() => navigate("landing")} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", flexShrink: 0 }}>
-            <img src="/logo.png" alt="青年元创计划 Origin Launch" style={{ height: 40, maxWidth: 160, width: "auto", objectFit: "contain", display: "block" }} />
+            {/* <img src="/logo.png" alt="青年元创计划 Origin Launch" style={{ height: 40, maxWidth: 160, width: "auto", objectFit: "contain", display: "block" }} /> */}
+            <img src={logo} alt="Meta-Create" style={{ height: 40, maxWidth: 160, width: "auto", objectFit: "contain", display: "block" }} 
             <span style={{ fontWeight: 700, fontSize: 16, color: "#F8FAFC" }}>Meta-Create</span>
           </div>
           <div style={{ display: "flex", gap: 2, alignItems: "center" }}>
