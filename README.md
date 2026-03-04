@@ -1,6 +1,6 @@
 # Meta-Create 
 
-# **01 — Who We Are**
+## 01 — Who We Are
 
 Meta-Create Initiative is a global platform that empowers people to discover their vision and become creators through co-creation and experimental space. We believe creativity is not a privilege — it's a way of thinking anyone can learn.
 
