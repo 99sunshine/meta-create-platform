@@ -2314,17 +2314,11 @@ export default function MetaCreateApp() {
     }
   }, [history]);
 
-  const navItems = [
+const navItems = [
     { key: "landing", label: t("nav_home", lang), icon: Home },
     { key: "feed", label: t("nav_explore", lang), icon: Grid3X3 },
     { key: "match", label: t("nav_match", lang), icon: Sparkles },
-    { key: "create", label: t("nav_create", lang), icon: Plus },
-    { key: "collab", label: t("nav_space_base", lang), icon: Rocket },
-    { key: "chat", label: t("nav_chat", lang), icon: MessageCircle },
-    { key: "workspace", label: t("nav_workspace", lang), icon: ClipboardList },
-    { key: "community", label: t("nav_community", lang), icon: Flame },
-    { key: "programs", label: t("nav_programs", lang), icon: Compass },
-    { key: "notifications", label: t("nav_alerts", lang), icon: Bell }
+    { key: "create", label: t("nav_create", lang), icon: Plus }
   ];
 
   return (
